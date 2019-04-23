@@ -38,23 +38,23 @@ function Bio() {
               }}
             />
             <p>
-              {author}'s personal blog. 
+              {author}'s personal blog. Intrigued by tech and creative expression.
               {` `}
-              <a href={`https://twitter.com/${social.twitter}`}>
-                Twitter
+              <a href={`https://twitter.com/${social.twitter}`}>Twitter</a>
+              {` `}|{` `}
+              <a href={`https://twitter.com/${social.github}`}>GitHub</a>
+              {` `}|{` `}
+              <a href={`https://medium.com/@${social.medium}`}>Medium</a>
+              {` `}|{` `}
+              <a href={`https://dev.to/${social.devto}`}>Dev.to</a>
+              {` `}|{` `}
+              <a
+                href={`https://docs.google.com/document/d/1Alx-1IwcP6ovn3jaK53fpUY7WeGZg2qLWUrKVT3D4m8/edit?usp=sharing`}
+              >
+                Resume
               </a>
-              {` `}
-              |
-              {` `}
-              <a href={`https://twitter.com/${social.github}`}>
-                GitHub
-              </a>
-              {` `}
-              |
-              {` `}
-              <a href={`/contact`}>
-                Contact
-              </a>
+              {` `}|{` `}
+              <a href={`/contact`}>Contact</a>
               {` `}
             </p>
           </div>
