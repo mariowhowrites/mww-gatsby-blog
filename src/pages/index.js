@@ -14,21 +14,21 @@ class BlogIndex extends React.Component {
 
     const categories = new Set()
 
-    posts.forEach(({ node }) => {
-      console.log(node.frontmatter.category)
-      categories.add(node.frontmatter.category)
-    })
-
+    posts.forEach(({ node }) => categories.add(node.frontmatter.category))
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO
           title="All posts"
           keywords={[`blog`, `gatsby`, `javascript`, `react`]}
         />
-        <Bio />
+        <Bio location={this.props.location} />
         <div style={{ display: "flex" }}>
           {Array.from(categories).map(category => (
-            <Link style={{ boxShadow: `none` }} to={`categories/${category}`}>
+            <Link
+              style={{ boxShadow: `none` }}
+              key={category}
+              to={`/categories/${category}`}
+            >
               {capitalize(category)}
             </Link>
           ))}
