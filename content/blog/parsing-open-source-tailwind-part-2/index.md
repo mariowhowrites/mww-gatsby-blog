@@ -3,6 +3,7 @@ title: Parsing Open Source - Tailwind CSS Chapter 2
 published: true
 description: Continuing our journey into Tailwind by resolving config
 tags: tailwindcss, javascript, nodejs, postcss
+category: technical
 date: "2019-04-19"
 ---
 

@@ -12,6 +12,13 @@ class BlogIndex extends React.Component {
     const siteTitle = data.site.siteMetadata.title
     const posts = data.allMarkdownRemark.edges
 
+    const categories = new Set()
+
+    posts.forEach(({ node }) => {
+      console.log(node.frontmatter.category)
+      categories.add(node.frontmatter.category)
+    })
+
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO
@@ -19,6 +26,13 @@ class BlogIndex extends React.Component {
           keywords={[`blog`, `gatsby`, `javascript`, `react`]}
         />
         <Bio />
+        <div style={{ display: "flex" }}>
+          {Array.from(categories).map(category => (
+            <Link style={{ boxShadow: `none` }} to={`categories/${category}`}>
+              {capitalize(category)}
+            </Link>
+          ))}
+        </div>
         {posts.map(({ node }) => {
           const title = node.frontmatter.title || node.fields.slug
           return (
@@ -46,6 +60,10 @@ class BlogIndex extends React.Component {
   }
 }
 
+function capitalize(word) {
+  return word.charAt(0).toUpperCase() + word.slice(1)
+}
+
 export default BlogIndex
 
 export const pageQuery = graphql`
@@ -65,6 +83,7 @@ export const pageQuery = graphql`
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
             title
+            category
             description
           }
         }
