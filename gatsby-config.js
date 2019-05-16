@@ -8,7 +8,7 @@ module.exports = {
       twitter: `mariowhowrites`,
       github: `mariowhowrites`,
       medium: `mariowhowrites`,
-      devto: `mariowhowrites`
+      devto: `mariowhowrites`,
     },
   },
   plugins: [
@@ -24,6 +24,14 @@ module.exports = {
       options: {
         path: `${__dirname}/content/assets`,
         name: `assets`,
+      },
+    },
+    `gatsby-transformer-json`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/data`,
+        name: `categories`,
       },
     },
     {
