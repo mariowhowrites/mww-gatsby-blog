@@ -12,9 +12,10 @@ class BlogIndex extends React.Component {
     const siteTitle = data.site.siteMetadata.title
     const posts = data.allMarkdownRemark.edges
 
-    const categories = new Set()
+    const categories = new Set(
+      posts.map(({ node }) => node.frontmatter.category)
+    )
 
-    posts.forEach(({ node }) => categories.add(node.frontmatter.category))
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO
@@ -23,9 +24,10 @@ class BlogIndex extends React.Component {
         />
         <Bio location={this.props.location} />
         <div style={{ display: "flex" }}>
+          <p style={{ fontWeight: "bold" }}>Content by category:</p>
           {Array.from(categories).map(category => (
             <Link
-              style={{ boxShadow: `none` }}
+              style={{ boxShadow: `none`, marginLeft: `1rem` }}
               key={category}
               to={`/categories/${category}`}
             >
