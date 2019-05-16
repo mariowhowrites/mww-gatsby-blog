@@ -5,6 +5,7 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
   const blogPost = path.resolve(`./src/templates/blog-post.js`)
+  const categoriesPage = path.resolve(`./src/templates/categories.js`)
   return graphql(
     `
       {
@@ -19,6 +20,7 @@ exports.createPages = ({ graphql, actions }) => {
               }
               frontmatter {
                 title
+                category
               }
             }
           }
@@ -45,6 +47,18 @@ exports.createPages = ({ graphql, actions }) => {
           previous,
           next,
         },
+      })
+    })
+
+    const categories = new Set(posts.map(post => post.node.frontmatter.category))
+
+    Array.from(categories).forEach(category => {
+      createPage({
+        path: `categories/${category}`,
+        component: categoriesPage,
+        context: {
+          category
+        }
       })
     })
   })

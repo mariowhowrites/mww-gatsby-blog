@@ -8,8 +8,8 @@ module.exports = {
       twitter: `mariowhowrites`,
       github: `mariowhowrites`,
       medium: `mariowhowrites`,
-      devto: `mariowhowrites`
-    }
+      devto: `mariowhowrites`,
+    },
   },
   plugins: [
     {
@@ -25,6 +25,14 @@ module.exports = {
         path: `${__dirname}/content/assets`,
         name: `assets`
       }
+    },
+    `gatsby-transformer-json`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/data`,
+        name: `categories`,
+      },
     },
     {
       resolve: `gatsby-transformer-remark`,
@@ -60,8 +68,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby Starter Blog`,
-        short_name: `GatsbyJS`,
+        name: `MarioWhoWrites`,
+        short_name: `MarioWhoWrites`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#663399`,

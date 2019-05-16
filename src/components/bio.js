@@ -11,19 +11,21 @@ import Image from "gatsby-image"
 
 import { rhythm } from "../utils/typography"
 
-function Bio() {
+function Bio({ location = undefined }) {
+  const wrapperStyles = {
+    display: `flex`,
+  }
+
+  wrapperStyles.marginBottom =
+    location && location.pathname === `/` ? rhythm(1.25) : rhythm(2.5)
+
   return (
     <StaticQuery
       query={bioQuery}
       render={data => {
         const { author, social } = data.site.siteMetadata
         return (
-          <div
-            style={{
-              display: `flex`,
-              marginBottom: rhythm(2.5),
-            }}
-          >
+          <div style={wrapperStyles}>
             <Image
               fixed={data.avatar.childImageSharp.fixed}
               alt={author}
@@ -38,7 +40,8 @@ function Bio() {
               }}
             />
             <p>
-              {author}'s personal blog. Intrigued by tech and creative expression.
+              {author}'s personal blog. Intrigued by tech and creative
+              expression.
               {` `}
               <a href={`https://twitter.com/${social.twitter}`}>Twitter</a>
               {` `}|{` `}

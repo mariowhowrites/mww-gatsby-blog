@@ -3,6 +3,7 @@ title: Parsing Open Source - Tailwind CSS
 published: true
 description: Peeking under the hood of everyone's favorite customizable CSS utility framework
 tags: tailwindcss, javascript, nodejs, postcss
+category: technical
 date: "2019-04-05T22:12:03.284Z"
 ---
 

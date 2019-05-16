@@ -1,6 +1,7 @@
 ---
 title: March 7
 description: Christening a new blog
+category: personal
 date: "2019-04-01"
 ---
 
