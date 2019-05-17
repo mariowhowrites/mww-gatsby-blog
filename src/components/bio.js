@@ -9,15 +9,10 @@ import React from "react"
 import { StaticQuery, graphql } from "gatsby"
 import Image from "gatsby-image"
 
-import { rhythm } from "../utils/typography"
-
 function Bio({ location = undefined }) {
   const wrapperStyles = {
     display: `flex`,
   }
-
-  wrapperStyles.marginBottom =
-    location && location.pathname === `/` ? rhythm(1.25) : rhythm(2.5)
 
   return (
     <StaticQuery
@@ -29,12 +24,7 @@ function Bio({ location = undefined }) {
             <Image
               fixed={data.avatar.childImageSharp.fixed}
               alt={author}
-              style={{
-                marginRight: rhythm(1 / 2),
-                marginBottom: 0,
-                minWidth: 50,
-                borderRadius: `100%`,
-              }}
+              
               imgStyle={{
                 borderRadius: `50%`,
               }}

@@ -1,8 +1,6 @@
 import React, { useState } from "react"
 import axios from "axios"
 
-import { rhythm } from "../utils/typography"
-
 export default function ContactForm(_props) {
   let [inquiry, setInquiry] = useState("")
   let [name, setName] = useState("")
@@ -48,9 +46,9 @@ export default function ContactForm(_props) {
         flexDirection: `column`,
       }}
     >
-      <h2 style={{ marginBottom: rhythm(1.5) }}>Contact me</h2>
-      <span style={{ marginBottom: rhythm(1.0) }}>
-        <label htmlFor="name" style={{ marginRight: rhythm(0.5) }}>
+      <h2>Contact me</h2>
+      <span >
+        <label htmlFor="name">
           Name
         </label>
         <input
@@ -60,8 +58,8 @@ export default function ContactForm(_props) {
           onInput={event => setName(event.target.value)}
         />
       </span>
-      <span style={{ marginBottom: rhythm(1.0) }}>
-        <label htmlFor="email" style={{ marginRight: rhythm(0.5) }}>
+      <span>
+        <label htmlFor="email" >
           Email
         </label>
         <input
@@ -76,16 +74,9 @@ export default function ContactForm(_props) {
       <textarea
         name="inquiry"
         onInput={onTextareaInput}
-        style={{ marginBottom: rhythm(1.5) }}
       />
       <div dangerouslySetInnerHTML={{ __html: statusMessage }} />
       <button
-        style={{
-          marginBottom: rhythm(3),
-          backgroundColor: "blue",
-          color: "white",
-          borderRadius: rhythm(0.2),
-        }}
         onClick={onSubmit}
       >
         Send Inquiry
