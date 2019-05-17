@@ -6,13 +6,14 @@ import SEO from "../components/seo"
 import HeroSection from "../components/HeroSection"
 import SkillsSection from "../components/SkillsSection"
 import RecentWriting from "../components/RecentWriting"
-import ContactMe from "../components/ContactMe";
+import ContactMe from "../components/ContactMe"
 
 class BlogIndex extends React.Component {
   render() {
     const { data } = this.props
     const siteTitle = data.site.siteMetadata.title
     const posts = data.allMarkdownRemark.edges
+    const skills = data.allSkillsJson.edges
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
@@ -21,15 +22,13 @@ class BlogIndex extends React.Component {
           keywords={[`blog`, `gatsby`, `javascript`, `react`]}
         />
         <HeroSection />
-        <SkillsSection />
+        <SkillsSection skills={skills} />
         <RecentWriting post={posts[0]} />
         <ContactMe />
       </Layout>
     )
   }
 }
-
-
 
 export default BlogIndex
 
@@ -54,6 +53,15 @@ export const pageQuery = graphql`
             category
             description
           }
+        }
+      }
+    }
+    allSkillsJson {
+      edges {
+        node {
+          skill
+          description
+          color
         }
       }
     }

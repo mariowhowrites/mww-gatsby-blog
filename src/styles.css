@@ -29,3 +29,33 @@
 #post-content ul {
   @apply list-disc pl-8 pr-4 my-2 py-4 text-2xl bg-gray-200;
 }
+
+.carat {
+  transition: transform 1s;
+}
+
+.carat.rotate {
+  transform: rotate(90deg);
+}
+
+.skill-description-enter,
+.skill-description-appear {
+  @apply opacity-0;
+}
+
+.skill-description-enter.skill-description-enter-active,
+.skill-description-appear.skill-description-appear-active {
+  transition: opacity 1s;
+
+  @apply opacity-100;
+}
+
+.skill-description-leave {
+  @apply opacity-100;
+}
+
+.skill-description-leave.skill-description-leave-active {
+  transition: opacity 1s;
+
+  @apply opacity-0;
+}

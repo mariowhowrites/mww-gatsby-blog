@@ -1,0 +1,22 @@
+[
+  {
+    "skill": "Design",
+    "description": "Solid design is the bedrock of robust websites. I leverage knowledge and expertise to craft a web strategy that supercharges your workflow. From there, I'll create a stunning, unique, and compelling web design that tells your story with clarity and purpose.",
+    "color": "teal-500"
+  },
+  {
+    "skill": "Develop",
+    "description": "No web design is complete without the code that powers it. Ceiba Web uses cutting-edge technologies and battle-tested techniques to bring your design to life across all devices and locations.",
+    "color": "orange-500"
+  },
+  {
+    "skill": "Demystify",
+    "description": "Backend code often defines how your business operates. However, because web servers are often invisible to users and stakeholders alike, translating business needs into backend server code is often difficult — but not with Ceiba Web. We work with you to bend web servers to your will.",
+    "color": "red-600"
+  },
+  {
+    "skill": "Deliver",
+    "description": "If you want your website to be loved by millions, building it is often only half the battle. Without the proper technical support system, most websites will crash at the first hint of popularity. When you want your website to go the distance, Ceiba Web has the knowledge and infrastructure to get you there.",
+    "color": "green-700"
+  }
+]

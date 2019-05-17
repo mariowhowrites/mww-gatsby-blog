@@ -1,37 +1,62 @@
-import React from "react"
+import React, { useState } from "react"
+import { CSSTransitionGroup } from "react-transition-group"
 
-export default function SkillsSection() {
+export default function SkillsSection({ skills }) {
   return (
     <section
-      className={`flex flex-col bg-light-black justify-center min-h-70vh`}
+      className={`flex flex-col bg-light-black justify-center min-h-70vh antialiased`}
     >
       <div
-        className={`w-1/4 md:text-right md:ml-0 ml-7 font-bold text-xl md:text-2xl mb-4 md:mb-0 text-gray-600 antialiased`}
+        className={`w-1/4 md:text-right md:ml-0 ml-7 font-bold text-xl md:text-2xl mb-4 md:mb-0 text-gray-600`}
       >
         My Skills
       </div>
       <article
-        className={`text-4xl md:text-6xl md:w-1/2 md:pr-64 md:ml-25vw ml-7 md:pt-8 font-heading font-bold relative flex flex-col text-white font-body`}
+        className={`text-4xl md:text-6xl md:pr-64 md:ml-25vw ml-7 md:pt-8 font-heading font-bold relative flex flex-col text-white font-body`}
       >
         <ul className="list-none">
-          <li>
-            <a>Design</a>
-            <span className="ml-4 text-teal-500">&gt;</span>
-          </li>
-          <li>
-            <a>Develop</a>
-            <span className="ml-4 text-orange-500">&gt;</span>
-          </li>
-          <li>
-            <a>Demystify</a>
-            <span className="ml-4 text-red-600">&gt;</span>
-          </li>
-          <li>
-            <a>Deliver</a>
-            <span className="ml-4 text-green-700">&gt;</span>
-          </li>
+          {skills.map(skill => (
+            <SkillPanel skill={skill} key={skill.node.skill} />
+          ))}
         </ul>
       </article>
     </section>
+  )
+}
+
+function SkillPanel({ skill: skillObject }) {
+  const { skill, description, color } = skillObject.node
+
+  let [isOpen, setIsOpen] = useState(false)
+
+  const descriptionClasses = () => {
+    let classes = "skill-description font-normal visible mb-8 text-2xl w-3/4"
+
+    return isOpen ? classes : "skill-description"
+  }
+
+  return (
+    <React.Fragment>
+      <li
+        className="flex align-center cursor-pointer select-none"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <span>{skill}</span>
+        <div className={`carat ${isOpen ? "rotate" : ""} ml-4 text-${color}`}>
+          &gt;
+        </div>
+      </li>
+      {isOpen && (
+        <CSSTransitionGroup
+          transitionName="skill-description"
+          transitionAppear={true}
+          transitionAppearTimeout={1000}
+          transitionEnterTimeout={1000}
+          transitionLeaveTimeout={1000}
+        >
+          <div className={descriptionClasses()}>{description}</div>
+        </CSSTransitionGroup>
+      )}
+    </React.Fragment>
   )
 }
