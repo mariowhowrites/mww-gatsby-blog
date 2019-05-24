@@ -35,7 +35,7 @@ function Bio({ location = undefined }) {
               {` `}
               <a href={`https://twitter.com/${social.twitter}`}>Twitter</a>
               {` `}|{` `}
-              <a href={`https://twitter.com/${social.github}`}>GitHub</a>
+              <a href={`https://github.com/${social.github}`}>GitHub</a>
               {` `}|{` `}
               <a href={`https://medium.com/@${social.medium}`}>Medium</a>
               {` `}|{` `}

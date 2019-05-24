@@ -13,6 +13,7 @@ module.exports = {
         "25vw": "25vw",
         "80vh": "80vh",
         "60vh": "60vh",
+        "40vh": "40vh",
         "7": "1.75rem",
       },
       minHeight: {
@@ -22,12 +23,22 @@ module.exports = {
         "50vh": "50vh",
         "40vh": "40vh",
       },
+      maxHeight: {
+        "50vh": "50vh",
+      },
       inset: {
         "2rem": "2rem",
-        "2.75rem": "2.75rem"
-      }
+        "2.75rem": "2.75rem",
+      },
+      fontSize: {
+        "8xl": "5.33rem",
+        "12xl": "8rem",
+      },
     },
   },
-  variants: {},
+  variants: {
+    opacity: ["responsive", "hover"],
+    backgroundColor: ["responsive", "hover", "active"],
+  },
   plugins: [],
 }

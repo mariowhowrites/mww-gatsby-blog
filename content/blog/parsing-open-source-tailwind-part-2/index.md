@@ -3,7 +3,8 @@ title: Parsing Open Source - Tailwind CSS Chapter 2
 published: true
 description: Continuing our journey into Tailwind by resolving config
 tags: tailwindcss, javascript, nodejs, postcss
-category: technical
+image: https://images.unsplash.com/photo-1538390416079-c89a38c8db42?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&q=60
+category: Technical
 date: "2019-04-19"
 ---
 
@@ -68,22 +69,22 @@ We should first note that the `defaults` function called here is imported from L
 Let's look at a simple example:
 
 ```js
-    const firstSource = {
-    	author: "Ursula Le Guin",
-    }
+const firstSource = {
+  author: "Ursula Le Guin",
+}
 
-    const secondSource = {
-    	author: "Dan Brown",
-    	actor: "Daniel Day-Lewis"
-    }
+const secondSource = {
+  author: "Dan Brown",
+  actor: "Daniel Day-Lewis"
+}
 
-    const finalTarget = defaults({}, firstSource, secondSource)
+const finalTarget = defaults({}, firstSource, secondSource)
 
-    // console.logging finalTarget would result in the following:
-    {
-    	author: "Ursula Le Guin",
-    	actor: "Daniel Day-Lewis"
-    }
+// console.logging finalTarget would result in the following:
+{
+  author: "Ursula Le Guin",
+  actor: "Daniel Day-Lewis"
+}
 ```
 
 Two steps happen when `defaults` is called:
@@ -114,22 +115,22 @@ export default function resolveConfig(configs) {
 What we want to focus on here is our target: the first argument to `defaults` that has theme and variant keys. Let's also use some more indentation to make things slightly easier to read:
 
 ```js
-    {
-      theme:
-    		resolveFunctionKeys(
-    			mergeExtensions(
-    				defaults(
-    					{},
-    					...map(configs, 'theme')
-    				)
-    			)
-    		),
-      variants:
-    		defaults(
-    			{},
-    			...map(configs, 'variants')
-    		),
-    },
+{
+  theme:
+    resolveFunctionKeys(
+      mergeExtensions(
+        defaults(
+          {},
+          ...map(configs, 'theme')
+        )
+      )
+    ),
+  variants:
+    defaults(
+      {},
+      ...map(configs, 'variants')
+    ),
+},
 ```
 
 Let's look at what's happening in the `theme` property first, as it's a tad more complex. Knowing that the JavaScript engine will execute this function from the inside out, the first thing we need to look at is the `defaults` call.
@@ -145,68 +146,68 @@ We see that an empty target object is filled with the `theme` key from each conf
 Using the strategies I outlined at the beginning of the chapter, I picked one test in the resolveConfig test suite to run repeatedly in my parsing process. That test looks like this:
 
 ```js
-    test.only('theme values in the extend section are lazily evaluated', () => {
-      const userConfig = {
-        theme: {
-          colors: {
-            red: 'red',
-            green: 'green',
-            blue: 'blue',
-          },
-          extend: {
-            colors: {
-              orange: 'orange',
-            },
-            borderColor: theme => ({
-              foo: theme('colors.orange'),
-              bar: theme('colors.red'),
-            }),
-          },
+test.only('theme values in the extend section are lazily evaluated', () => {
+  const userConfig = {
+    theme: {
+      colors: {
+        red: 'red',
+        green: 'green',
+        blue: 'blue',
+      },
+      extend: {
+        colors: {
+          orange: 'orange',
         },
-      }
+        borderColor: theme => ({
+          foo: theme('colors.orange'),
+          bar: theme('colors.red'),
+        }),
+      },
+    },
+  }
 
-      const defaultConfig = {
-        prefix: '-',
-        important: false,
-        separator: ':',
-        theme: {
-          colors: {
-            cyan: 'cyan',
-            magenta: 'magenta',
-            yellow: 'yellow',
-          },
-          borderColor: theme => ({
-            default: theme('colors.yellow', 'currentColor'),
-            ...theme('colors'),
-          }),
-        },
-        variants: {
-          borderColor: ['responsive', 'hover', 'focus'],
-        },
-      }
+  const defaultConfig = {
+    prefix: '-',
+    important: false,
+    separator: ':',
+    theme: {
+      colors: {
+        cyan: 'cyan',
+        magenta: 'magenta',
+        yellow: 'yellow',
+      },
+      borderColor: theme => ({
+        default: theme('colors.yellow', 'currentColor'),
+        ...theme('colors'),
+      }),
+    },
+    variants: {
+      borderColor: ['responsive', 'hover', 'focus'],
+    },
+  }
 
-      const result = resolveConfig([userConfig, defaultConfig])
+  const result = resolveConfig([userConfig, defaultConfig])
 
-    /* expected result not immediately relevant and thus left out for brevity */
+/* expected result not immediately relevant and thus left out for brevity */
 ```
 
 When running the above test and examining the result of the first `defaults` function call, the result looks something like this:
 
 ```js
-    {
-    	colors: {
-    		red: 'red',
-    		green: 'green',
-    		blue: 'blue'
-    	},
-    	extend: {
-    		colors: {
-    			orange: 'orange'
-    		},
-        borderColor: [Function: borderColor]
-    	},
-    	borderColor: [Function: borderColor]
-    }
+{
+  colors: {
+    red: 'red',
+    green: 'green',
+    blue: 'blue'
+  },
+  extend: {
+    colors: {
+      orange: 'orange'
+    },
+    borderColor: [Function: borderColor]
+  },
+  borderColor: [Function: borderColor]
+}
 ```
 
 We see that any values defined in the user config override any values in the default config. Namely, the `colors` defined by default have been thrown out and replaced by the user-config `colors`. We also see that the `extends` key holds an extra color, orange, and an extra function that will define border colors.
@@ -256,22 +257,22 @@ There is one important detail to note here. In short, using spread syntax works 
 To use our previous example:
 
 ```js
-    const firstSource = {
-    	author: "Ursula Le Guin",
-    }
+const firstSource = {
+  author: "Ursula Le Guin",
+}
 
-    const secondSource = {
-    	author: "Dan Brown",
-    	actor: "Daniel Day-Lewis"
-    }
+const secondSource = {
+  author: "Dan Brown",
+  actor: "Daniel Day-Lewis"
+}
 
-    const finalTarget = { ...firstSource, ...secondSource }
+const finalTarget = { ...firstSource, ...secondSource }
 
-    // console.logging finalTarget would result in the following:
-    {
-    	author: "Dan Brown", // secondSource overrides firstSource!
-    	actor: "Daniel Day-Lewis"
-    }
+// console.logging finalTarget would result in the following:
+{
+  author: "Dan Brown", // secondSource overrides firstSource!
+  actor: "Daniel Day-Lewis"
+}
 ```
 
 Sadly, Ursula Le Guin is pushed aside in this iteration to make room for a far less adept author. (I prefer Le Guin to Brown, if this hasn't been made clear.)
@@ -283,20 +284,20 @@ In this way, the `extends` key can be useful in scenarios where you want to over
 With a better understanding of how the rest and spread operators work, let's take another look at Step 3, which happens if either the theme or the extension is a function:
 
 ```js
-    function value(valueToResolve, ...args) {
-      return isFunction(valueToResolve) ? valueToResolve(...args) : valueToResolve
-    }
+function value(valueToResolve, ...args) {
+  return isFunction(valueToResolve) ? valueToResolve(...args) : valueToResolve
+}
 
-    mergeWith(theme, extend, (themeValue, extensions) => {
-        // if themeValue or extensions is a function...
-        return resolveThemePath => {
-          return {
-            ...value(themeValue, resolveThemePath),
-            ...value(extensions, resolveThemePath),
-          }
-        }
-      })
+mergeWith(theme, extend, (themeValue, extensions) => {
+    // if themeValue or extensions is a function...
+    return resolveThemePath => {
+      return {
+        ...value(themeValue, resolveThemePath),
+        ...value(extensions, resolveThemePath),
+      }
     }
+  })
+}
 ```
 
 There are some similarities to Step 2 here: both steps construct an object using the spread operators on both the theme and extension values. However, in this case, instead of creating the object and returning it directly, a function is returned whose sole responsibility is to create the object.
@@ -310,15 +311,15 @@ Notably, in the code above, no functions are actually invoked when merging theme
 Let's look at what's returned from `mergeExtensions` when calling our previous test:
 
 ```js
-    {
-    	colors: {
-    		red: 'red',
-    		green: 'green',
-    		blue: 'blue',
-    		orange: 'orange'
-    	},
-      borderColor: [Function]
-    }
+{
+  colors: {
+    red: 'red',
+    green: 'green',
+    blue: 'blue',
+    orange: 'orange'
+  },
+  borderColor: [Function]
+}
 ```
 
 We can see two primary differences from the previous result:
@@ -376,63 +377,63 @@ At this point, my head is starting to spin a bit. I've written the word "functio
 
 Let's go back to the test we've been working with, deleting parts that aren't relevant:
 
-```
-    test.only('theme values in the extend section are lazily evaluated', () => {
-      const userConfig = {
-        theme: {
-          colors: {
-            red: 'red',
-            green: 'green',
-            blue: 'blue',
-          },
-          extend: {
-            colors: {
-              orange: 'orange',
-            },
-            borderColor: theme => ({
-              foo: theme('colors.orange'),
-              bar: theme('colors.red'),
-            }),
-          },
+```js
+test.only("theme values in the extend section are lazily evaluated", () => {
+  const userConfig = {
+    theme: {
+      colors: {
+        red: "red",
+        green: "green",
+        blue: "blue",
+      },
+      extend: {
+        colors: {
+          orange: "orange",
         },
-      }
+        borderColor: theme => ({
+          foo: theme("colors.orange"),
+          bar: theme("colors.red"),
+        }),
+      },
+    },
+  }
 
-      const defaultConfig = {
-        theme: {
-          colors: {
-            cyan: 'cyan',
-            magenta: 'magenta',
-            yellow: 'yellow',
-          },
-          borderColor: theme => ({
-            default: theme('colors.yellow', 'currentColor'),
-            ...theme('colors'),
-          }),
-        },
-      }
+  const defaultConfig = {
+    theme: {
+      colors: {
+        cyan: "cyan",
+        magenta: "magenta",
+        yellow: "yellow",
+      },
+      borderColor: theme => ({
+        default: theme("colors.yellow", "currentColor"),
+        ...theme("colors"),
+      }),
+    },
+  }
 
-      const result = resolveConfig([userConfig, defaultConfig])
+  const result = resolveConfig([userConfig, defaultConfig])
 
-      expect(result).toEqual({
-        theme: {
-          colors: {
-            orange: 'orange',
-            red: 'red',
-            green: 'green',
-            blue: 'blue',
-          },
-          borderColor: {
-            default: 'currentColor',
-            foo: 'orange',
-            bar: 'red',
-            orange: 'orange',
-            red: 'red',
-            green: 'green',
-            blue: 'blue',
-          },
-        },
-      })
-    })
+  expect(result).toEqual({
+    theme: {
+      colors: {
+        orange: "orange",
+        red: "red",
+        green: "green",
+        blue: "blue",
+      },
+      borderColor: {
+        default: "currentColor",
+        foo: "orange",
+        bar: "red",
+        orange: "orange",
+        red: "red",
+        green: "green",
+        blue: "blue",
+      },
+    },
+  })
+})
 ```
 
 The extra-important parts here are the two `borderColor` functions: the first in the `extends` key of the user config, and the second in the default config.
@@ -445,29 +446,32 @@ The first context in which we see functions come into play is within `mergeExten
 
 Let's rewrite this code in a more literal way, as if we were hard-coding the test case within Tailwind:
 
-```
-    function mergeExtensions() { // we are hard-coding arguments below rather than passing them in
-    	function userExtendsBorderColorFunction(theme) { // from user.theme.extend.borderColor
-    		return {
-    			foo: theme('colors.orange'),
-    	    bar: theme('colors.red'),
-    		}
-    	}
-
-    	function defaultBorderColorFunction(theme) { // from default.theme.borderColor
-    		return {
-    		  default: theme('colors.yellow', 'currentColor'),
-    		  ...theme('colors'),
-    		}
-    	}
-
-    	return function(resolveThemePath) {
-    	  return {
-    			...defaultBorderColorFunction(...resolveThemePath),
-    	    ...userExtendsBorderColorFunction(...resolveThemePath),
-    	  }
-    	}
+```js
+function mergeExtensions() {
+  // we are hard-coding arguments below rather than passing them in
+  function userExtendsBorderColorFunction(theme) {
+    // from user.theme.extend.borderColor
+    return {
+      foo: theme("colors.orange"),
+      bar: theme("colors.red"),
     }
+  }
+
+  function defaultBorderColorFunction(theme) {
+    // from default.theme.borderColor
+    return {
+      default: theme("colors.yellow", "currentColor"),
+      ...theme("colors"),
+    }
+  }
+
+  return function(resolveThemePath) {
+    return {
+      ...defaultBorderColorFunction(...resolveThemePath),
+      ...userExtendsBorderColorFunction(...resolveThemePath),
+    }
+  }
+}
 ```
 
 With this more literal example, it is hopefully clearer what `mergeExtensions` does when it comes across a key with a function value. In this case, when `mergeExtensions` encounters the `borderColor` key and sees that its value is a function, it creates a new function that combines the default function with the function the user defined in the `extends` key. As before, any keys defined in the user config override keys found in the default config via spread syntax.

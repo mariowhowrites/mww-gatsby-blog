@@ -1,5 +1,5 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -8,7 +8,7 @@ import SkillsSection from "../components/SkillsSection"
 import RecentWriting from "../components/RecentWriting"
 import ContactMe from "../components/ContactMe"
 
-class BlogIndex extends React.Component {
+class HomePage extends React.Component {
   render() {
     const { data } = this.props
     const siteTitle = data.site.siteMetadata.title
@@ -18,8 +18,8 @@ class BlogIndex extends React.Component {
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO
-          title="All posts"
-          keywords={[`blog`, `gatsby`, `javascript`, `react`]}
+          title="MarioWhoWrites"
+          keywords={[`developer`, `gatsby`, `javascript`, `react`]}
         />
         <HeroSection />
         <SkillsSection skills={skills} />
@@ -30,7 +30,7 @@ class BlogIndex extends React.Component {
   }
 }
 
-export default BlogIndex
+export default HomePage
 
 export const pageQuery = graphql`
   query {
@@ -52,6 +52,7 @@ export const pageQuery = graphql`
             title
             category
             description
+            image
           }
         }
       }

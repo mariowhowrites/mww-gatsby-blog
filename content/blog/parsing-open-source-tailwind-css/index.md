@@ -3,7 +3,7 @@ title: Parsing Open Source - Tailwind CSS
 published: true
 description: Peeking under the hood of everyone's favorite customizable CSS utility framework
 tags: tailwindcss, javascript, nodejs, postcss
-category: technical
+category: Technical
 date: "2019-04-05T22:12:03.284Z"
 ---
 
@@ -537,9 +537,9 @@ Because this function would have been "hoisted", we would not have had access to
 Confusing? I know it was for me when I started. This is one of those JavaScript features that, while powerful, can be a bit hard to parse even for experienced developers. I started my web development journey with PHP, and while the language does have its warts, I personally believe it handles this scenario a bit more directly. Such a function in PHP would have looked like:
 
 ```php
-    function applyConfiguredPrefix($selector) use ($config) {
-        return prefixSelector($config->prefix, $selector);
-    }
+function applyConfiguredPrefix($selector) use ($config) {
+    return prefixSelector($config->prefix, $selector);
+}
 ```
 
 You can see specifically which variables this function depends on because they are defined in the `use` clause, which to me is far less confusing. But, I digress.
@@ -551,21 +551,21 @@ On a surface level, what's happening is that every plugin in Tailwind, whether d
 We see that virtually all of the methods defined on this parameter are function expressions, such as the `config` method:
 
 ```js
-    {
-    	// previous methods
-    	config: (path, defaultValue) => _.get(config, path, defaultValue),
-    	// ... the rest of the plugin methods
-    }
+{
+  // previous methods
+  config: (path, defaultValue) => _.get(config, path, defaultValue),
+  // ... the rest of the plugin methods
+}
 ```
 
 Here, the colon indicates that this is a function expression. If it were a function declaration, it would instead be defined like this:
 
 ```js
-    {
-    	config(path, defaultValue) {
-    		return _.get(config, path, defaultValue) // error: config is undefined
-    	},
-    }
+{
+  config(path, defaultValue) {
+    return _.get(config, path, defaultValue) // error: config is undefined
+  },
+}
 ```
 
 Because an expression is used instead of a declaration, `config` can be referenced just as it was in `applyConfiguredPrefix`.
@@ -575,31 +575,31 @@ Now, at this point you might be wondering: why go to all this trouble to avoid p
 In this case, since we are simply reading from `config` and not editing it, this might be true. However, to see the true utility of function expressions, let's take a look at another one of the methods: `addUtilities`.
 
 ```js
-    const pluginUtilities = []
-    // ... within plugin.forEach loop:
-    {
-    	addUtilities: (utilities, options) => {
-        const defaultOptions = { variants: [], respectPrefix: true, respectImportant: true }
+const pluginUtilities = []
+// ... within plugin.forEach loop:
+{
+  addUtilities: (utilities, options) => {
+    const defaultOptions = { variants: [], respectPrefix: true, respectImportant: true }
 
-        options = Array.isArray(options)
-          ? Object.assign({}, defaultOptions, { variants: options })
-          : _.defaults(options, defaultOptions)
+    options = Array.isArray(options)
+      ? Object.assign({}, defaultOptions, { variants: options })
+      : _.defaults(options, defaultOptions)
 
-        const styles = postcss.root({ nodes: parseStyles(utilities) })
+    const styles = postcss.root({ nodes: parseStyles(utilities) })
 
-        styles.walkRules(rule => {
-          if (options.respectPrefix) {
-            rule.selector = applyConfiguredPrefix(rule.selector)
-          }
+    styles.walkRules(rule => {
+      if (options.respectPrefix) {
+        rule.selector = applyConfiguredPrefix(rule.selector)
+      }
 
-          if (options.respectImportant && _.get(config, 'important')) {
-            rule.walkDecls(decl => (decl.important = true))
-          }
-        })
+      if (options.respectImportant && _.get(config, 'important')) {
+        rule.walkDecls(decl => (decl.important = true))
+      }
+    })
 
-        pluginUtilities.push(wrapWithVariants(styles.nodes, options.variants))
-      },
-    }
+    pluginUtilities.push(wrapWithVariants(styles.nodes, options.variants))
+  },
+}
 ```
 
 Before parsing the rest of the method, let's look at the final line, where the method's results are pushed into `pluginUtilities`. Remember that the `pluginUtilities` array is defined **before** the plugin loop. Because `addUtilities` is a function expression that occurs after `pluginUtilities` is defined, it has access to the `pluginUtilities` array. Importantly, this means that it can also change the value of `pluginUtilities`.

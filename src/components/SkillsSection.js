@@ -7,12 +7,12 @@ export default function SkillsSection({ skills }) {
       className={`flex flex-col bg-light-black justify-center min-h-70vh antialiased`}
     >
       <div
-        className={`w-1/4 md:text-right md:ml-0 ml-7 font-bold text-xl md:text-2xl mb-4 md:mb-0 text-gray-600`}
+        className={`w-1/4 md:text-right md:ml-0 ml-7 mt-8 font-bold text-xl md:text-2xl mb-4 md:mb-0 text-gray-600`}
       >
         My Skills
       </div>
       <article
-        className={`text-4xl md:text-6xl md:pr-64 md:ml-25vw ml-7 md:pt-8 font-heading font-bold relative flex flex-col text-white font-body`}
+        className={`text-4xl md:text-6xl md:pr-64 md:ml-25vw ml-7 mb-8 md:pt-8 font-heading font-bold relative flex flex-col text-white font-body`}
       >
         <ul className="list-none">
           {skills.map(skill => (
@@ -30,7 +30,8 @@ function SkillPanel({ skill: skillObject }) {
   let [isOpen, setIsOpen] = useState(false)
 
   const descriptionClasses = () => {
-    let classes = "skill-description font-normal visible mb-8 text-2xl w-3/4"
+    let classes =
+      "skill-description font-normal visible mb-8 text-lg md:text-2xl w-3/4"
 
     return isOpen ? classes : "skill-description"
   }
@@ -38,7 +39,7 @@ function SkillPanel({ skill: skillObject }) {
   return (
     <React.Fragment>
       <li
-        className="flex align-center cursor-pointer select-none"
+        className="skill flex align-center cursor-pointer select-none"
         onClick={() => setIsOpen(!isOpen)}
       >
         <span>{skill}</span>
@@ -54,9 +55,17 @@ function SkillPanel({ skill: skillObject }) {
           transitionEnterTimeout={1000}
           transitionLeaveTimeout={1000}
         >
-          <div className={descriptionClasses()}>{description}</div>
+          <SkillDescription
+            key={skill}
+            description={description}
+            classes={descriptionClasses()}
+          />
         </CSSTransitionGroup>
       )}
     </React.Fragment>
   )
+}
+
+function SkillDescription({ description, classes }) {
+  return <div className={classes}>{description}</div>
 }

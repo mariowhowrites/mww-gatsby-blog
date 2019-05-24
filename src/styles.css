@@ -3,31 +3,65 @@
 @tailwind utilities;
 
 #post-content {
-  @apply font-heading leading-relaxed;
+  @apply font-heading leading-relaxed break-words;
 }
 
 #post-content p {
-  @apply mb-4 text-2xl;
+  @apply mb-4 text-lg;
+}
+
+@screen md {
+  #post-content p {
+    @apply text-2xl;
+  }
 }
 
 #post-content h2 {
-  @apply my-6 text-4xl font-bold;
+  @apply mt-12 mb-4 text-2xl font-body font-bold;
+}
+
+@screen md {
+  #post-content h2 {
+    @apply mt-16 mb-4 text-4xl font-bold font-body;
+  }
 }
 
 #post-content h3 {
-  @apply mt-6 mb-4 text-3xl font-bold opacity-50;
+  @apply mt-12 mb-4 text-xl font-bold opacity-75 font-body;
+}
+
+@screen md {
+  #post-content h3 {
+    @apply mt-16 mb-4 text-3xl font-bold opacity-75 font-body;
+  }
 }
 
 #post-content ol {
-  @apply list-decimal pl-8 pr-4 my-2 py-4 text-2xl bg-gray-200;
+  @apply list-decimal pl-6 pr-4 my-4 py-2 bg-gray-200;
 }
 
-#post-content li {
-  @apply my-4;
+@screen md {
+  #post-content ol {
+    @apply list-decimal pl-8 pr-4 my-8 py-4 text-2xl bg-gray-200;
+  }
 }
 
 #post-content ul {
-  @apply list-disc pl-8 pr-4 my-2 py-4 text-2xl bg-gray-200;
+  @apply list-disc pl-4 pr-4 my-4 py-2 bg-gray-200;
+}
+
+@screen md {
+  #post-content ul {
+    @apply list-disc pl-8 pr-4 my-8 py-4 text-2xl bg-gray-200;
+  }
+}
+
+#post-content li {
+  @apply my-4 break-words;
+}
+
+.gatsby-highlight {
+  @apply my-8;
 }
 
 .carat {
@@ -58,4 +92,32 @@
   transition: opacity 1s;
 
   @apply opacity-0;
+}
+
+.skill {
+  transition: opacity 0.2s ease-in;
+}
+
+.skill:hover {
+  @apply opacity-50;
+}
+
+.trans-opacity {
+  transition: opacity 0.2s ease-in;
+}
+
+.trans-bg-color {
+  transition: background-color 0.5s ease-in;
+}
+
+.trans-shadow {
+  transition: box-shadow 0.1s ease-in;
+}
+
+.trans-button {
+  transition: box-shadow 0.4s ease-in, background-color 0.3s ease-in-out;
+}
+
+.button:disabled {
+  @apply bg-gray-200 text-gray-500 shadow;
 }

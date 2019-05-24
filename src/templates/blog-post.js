@@ -1,7 +1,5 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-
-import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
@@ -11,17 +9,26 @@ class BlogPostTemplate extends React.Component {
     const siteTitle = this.props.data.site.siteMetadata.title
     const { previous, next } = this.props.pageContext
 
+    console.log(post)
+
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO
           title={post.frontmatter.title}
           description={post.frontmatter.description || post.excerpt}
         />
-        <article className="mt-20 w-1/2 mx-auto">
-          <h1 class="font-body font-bold text-5xl mb-4">
+        <article className="mt-20 px-6 md:px-0 md:w-1/2 mx-auto">
+          {post.frontmatter.image && (
+            <img
+              className="mb-8 shadow-2xl rounded-lg"
+              src={post.frontmatter.image}
+              alt={post.frontmatter.title}
+            />
+          )}
+          <h1 className="font-body font-bold text-3xl md:text-4xl mb-4">
             {post.frontmatter.title}
           </h1>
-          <p class="opacity-50 font-bold text-2xl mb-8">
+          <p className="opacity-50 font-bold text-2xl mb-8">
             {post.frontmatter.date}
           </p>
           <div
@@ -69,6 +76,7 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
+        image
       }
     }
   }

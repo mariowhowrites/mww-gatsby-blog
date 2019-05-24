@@ -50,15 +50,17 @@ exports.createPages = ({ graphql, actions }) => {
       })
     })
 
-    const categories = new Set(posts.map(post => post.node.frontmatter.category))
+    const categories = new Set(
+      posts.map(post => post.node.frontmatter.category)
+    )
 
     Array.from(categories).forEach(category => {
       createPage({
         path: `categories/${category}`,
         component: categoriesPage,
         context: {
-          category
-        }
+          category,
+        },
       })
     })
   })
@@ -75,4 +77,8 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       value,
     })
   }
+}
+
+exports.onPostBuild = ({ getNodesByType }) => {
+  console.log(getNodesByType(`MarkdownRemark`))
 }

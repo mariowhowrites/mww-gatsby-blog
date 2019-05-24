@@ -16,14 +16,13 @@ function PrimaryNav() {
               className={`flex justify-between px-7 md:px-24 mx-auto items-baseline relative`}
             >
               <Link to="/">
-                <h3 className={`text-xl md:text-3xl`}>{title}</h3>
+                <h3 className={`text-xl md:text-3xl font-heading`}>{title}</h3>
               </Link>
               <aside className={`hidden md:block text-3xl opacity-50`}>
-                <a className={`mr-12`}>Services</a>
-                <a className={`mr-12`}>About</a>
-                <a className={`mr-12`}>Careers</a>
-                <a className={`mr-12`}>Blog</a>
-                <a>Contact</a>
+                <Link to="/blog" className="mr-12">
+                  Blog
+                </Link>
+                <Link to="/contact">Contact</Link>
               </aside>
               <aside
                 onClick={() => setShowMobileNav(!showMobileNav)}
@@ -41,15 +40,15 @@ function PrimaryNav() {
 }
 
 function MobileNav({ show }) {
-  console.log(show)
-
   return !show ? null : (
     <div className="bg-light-black absolute right-2rem top-2.75rem px-4 z-10 text-white antialiased">
-      <ul class="list-none">
-        <li className="my-2">Services</li>
-        <li className="my-2">About</li>
-        <li className="my-2">Careers</li>
-        <li className="my-2">Blog</li>
+      <ul>
+        <Link to="/blog">
+          <li className="my-2">Blog</li>
+        </Link>
+        <Link to="/contact">
+          <li className="my-2">Contact</li>
+        </Link>
       </ul>
     </div>
   )
