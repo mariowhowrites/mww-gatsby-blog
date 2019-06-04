@@ -7,5 +7,8 @@
       "use": "@now/static-build",
       "config": { "distDir": "public" }
     }
-  ]
+  ],
+  "env": {
+    "MWW_GA_ID": "@mww-ga-id"
+  }
 }
