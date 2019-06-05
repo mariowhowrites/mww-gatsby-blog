@@ -3,7 +3,7 @@ import React from "react"
 export default function HeroSection() {
   return (
     <div
-      className={`flex flex-col-reverse mt-16 xl:mt-0`}
+      className={`flex flex-col-reverse mt-16`}
       style={{ minHeight: "60vh", paddingBottom: "20vh" }}
     >
       <p
