@@ -3,11 +3,11 @@ import React from "react"
 export default function HeroSection() {
   return (
     <div
-      className={`flex flex-col-reverse mt-16 md:mt-0`}
+      className={`flex flex-col-reverse mt-16 xl:mt-0`}
       style={{ minHeight: "60vh", paddingBottom: "20vh" }}
     >
       <p
-        className={`text-5xl md:text-6xl ml-7 md:ml-25vw md:w-1/2 pr-0 md:pr-64 pt-8 font-heading relative`}
+        className={`text-5xl md:text-6xl ml-7 md:ml-25vw md:w-3/5 xl:w-1/2 pr-0 md:pr-64 pt-8 font-heading relative`}
       >
         Words for humans & computers too
       </p>

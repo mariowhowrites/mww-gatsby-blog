@@ -5,6 +5,9 @@ module.exports = {
       body: ["Source Sans Pro"],
     },
     extend: {
+      screens: {
+        xl: "1440px",
+      },
       colors: {
         beige: "#FBFAF3",
         "light-black": "#222222",
