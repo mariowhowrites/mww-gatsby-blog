@@ -10,6 +10,8 @@ date: "2019-06-05"
 
 Welcome to the much-belated Part 2 of my Laravel Authentication series! As promised, in this chapter we'll be diving more into the nuts and bolts of the authentication process. We'll also look at the login process in an attempt to better understand how the authentication process works within a Laravel application.
 
+If you haven't yet read Part 1 of the Authentication with Laravel series, you can find it on Medium [here](https://medium.com/@mariowhowrites/laravel-authentication-under-the-hood-78064b5b89e6).
+
 I'm going to start with the code that's added to a Laravel application once the developer uses the `make:auth` command. From there, we'll work our way from the top on down, looking at the code behind a typical login request before examining the code that makes such a login workflow possible.
 
 ## Scaffolding Auth
