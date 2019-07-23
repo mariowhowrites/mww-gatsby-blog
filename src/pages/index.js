@@ -7,7 +7,6 @@ import HeroSection from "../components/HeroSection"
 import SkillsSection from "../components/SkillsSection"
 import RecentWriting from "../components/RecentWriting"
 import ContactMe from "../components/ContactMe"
-import SampleComponent from "../components/SampleComponent"
 
 function HomePage({ data }) {
   const siteTitle = data.site.siteMetadata.title

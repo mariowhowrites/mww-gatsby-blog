@@ -7,7 +7,9 @@ export default function ContactMe() {
       className={`flex flex-col bg-beige justify-center pl-7 md:pl-25vw md:min-h-60vh min-h-50vh`}
     >
       <h3 className="text-8xl md:text-12xl font-heading mb-8">
-        📬
+        <span role="img" aria-label="Mailbox">
+          📬
+        </span>
       </h3>
       <Link
         to="/contact"

@@ -10,7 +10,7 @@ date: "2019-07-22"
 
 # Café Facebook
 
-*An analogy I've used to help explain frontend vs backend programming to non-techies*
+_An analogy I've used to help explain frontend vs backend programming to non-techies_
 
 I don't exactly come from a long line of computer scientists. My father worked as a waiter for decades after immigrating to the United States; my mother is a lifelong special education teacher and (recent) administrator.
 
@@ -18,21 +18,21 @@ As such, I'm often looking for ways to explain what exactly I do while haunched 
 
 As a fullstack developer, one of the concepts that comes up most often is the distinction between frontend and backend development. It's a subject that many understand in principle: tech companies have big servers that do computer-type things behind the scenes. If need be, these servers can be hacked on TV shows by pounding random characters on your keyboard with a worried expression.
 
-[https://www.youtube.com/watch?v=msX4oAXpvUE](https://www.youtube.com/watch?v=msX4oAXpvUE)
+`youtube:https://www.youtube.com/embed/msX4oAXpvUE`
 
 Pair programming at its finest.
 
 Try to explain any further, though, and you're wading into dangerous territory. There's a metaphor I've used in the past that has worked decently well:
 
-> The frontend is your experience of liking a post on Facebook. The backend is what Facebook does behind the scenes when you like a post.
+**The frontend is your experience of liking a post on Facebook. The backend is what Facebook does behind the scenes when you like a post.**
 
-For the most part, this analogy accomplishes its stated goal: giving the listener enough context to change the subject without exposing their lack of knowledge or interest.  But to me, the comparison is too direct, too close to the subject matter to be truly useful.
+For the most part, this analogy accomplishes its stated goal: giving the listener enough context to change the subject without exposing their lack of knowledge or interest. But to me, the comparison is too direct, too close to the subject matter to be truly useful.
 
 Recently, I've been using another point of comparison that I believe paints a more vivid picture of the responsibilities of frontend and backend dev. The comparison? Restaurants.
 
-When the comparison first came to me, it seemed so obvious that I was sure someone had thought of it before: 
+When the comparison first came to me, it seemed so obvious that I was sure someone had thought of it before:
 
-> Frontend development is everything you see as a diner in a restaurant: the interior decor, the music, the atmosphere, etc. Backend development is everything that happens in the kitchen: buying ingredients, creating new dishes, and, of course, cooking the food.
+**Frontend development is everything you see as a diner in a restaurant: the interior decor, the music, the atmosphere, etc. Backend development is everything that happens in the kitchen: buying ingredients, creating new dishes, and, of course, cooking the food.**
 
 In essence, instead of asking people to picture Facebook itself, I ask them to imagine Café Facebook. As your typical listener will have more experience with restaurants than server farms, they'll have more information to fill in the details of your analogy on their own terms.
 
@@ -40,7 +40,7 @@ There are a couple reasons why I find restaurants to work well in this scenario:
 
 ## 1. Frontend development maps well to restaurant design.
 
-Going over the details of an appealing restaurant atmosphere is a good way to think about the multifaceted skills necessary to excel in frontend development. When one explains frontend development in isolation, there's a tendency to view the process as glorified graphic design, where developers copy-pasting Photoshop documents into HTML to create pixel-perfect designs instantly. 
+Going over the details of an appealing restaurant atmosphere is a good way to think about the multifaceted skills necessary to excel in frontend development. When one explains frontend development in isolation, there's a tendency to view the process as glorified graphic design, where developers copy-pasting Photoshop documents into HTML to create pixel-perfect designs instantly.
 
 While we developers might pine for that reality, our jobs are not nearly that simple. From accessibility to security to performance and more, frontend developers regularly juggle competing tasks and priorities when deciding how to build interfaces.
 
@@ -52,9 +52,9 @@ Many frontend developers I've talked to can relate with this struggle. That Java
 
 ## 2. Backend development maps well to kitchen logistics.
 
-Just like website backends, kitchens are the hidden hearts of restaurants. Tucked away from public view, kitchens nonetheless provide the experience that no restaurant can survive without: the food. 
+Just like website backends, kitchens are the hidden hearts of restaurants. Tucked away from public view, kitchens nonetheless provide the experience that no restaurant can survive without: the food.
 
-Because the goings-on of kitchens happen away from the spotlight, much less concern is paid to aesthetics. The chef's knife doesn't need to be photogenic; it just needs to cut food well and quickly. 
+Because the goings-on of kitchens happen away from the spotlight, much less concern is paid to aesthetics. The chef's knife doesn't need to be photogenic; it just needs to cut food well and quickly.
 
 This isn't to say that backend developers can afford to be sloppy, just as chefs cannot be careless with customers' orders. While we may laugh at memes suggesting that all website backends are dumpster fires hiding behind shiny exteriors, all good developers pay close attention to their craft regardless of frontend or backend speciality.
 
@@ -70,9 +70,9 @@ Some of my favorite restaurants are hole-in-the-wall establishments making only 
 
 I'm sure many of you have had similar experiences with websites as well: the design isn't going to win any awards for originality, but the site works as advertised.
 
-Funnily enough, neither restaurants nor websites tend to work as well the other way. I've seen many a restaurant spend more time on interior design than on food; until Instagram pays out restaurants based on number of checkins, these businesses are often doomed to failure. 
+Funnily enough, neither restaurants nor websites tend to work as well the other way. I've seen many a restaurant spend more time on interior design than on food; until Instagram pays out restaurants based on number of checkins, these businesses are often doomed to failure.
 
-Now, it is possible for websites to focus exclusively on frontend design — but only if these websites are strictly informative in nature. Static websites can, and often do, thrive with only the barest of backends powering them behind the scenes. However, as soon as the contact form on your website doesn't work or your orders aren't properly placed  on checkout, not even the sleekest of designs will save your website from quick abandonment. 
+Now, it is possible for websites to focus exclusively on frontend design — but only if these websites are strictly informative in nature. Static websites can, and often do, thrive with only the barest of backends powering them behind the scenes. However, as soon as the contact form on your website doesn't work or your orders aren't properly placed on checkout, not even the sleekest of designs will save your website from quick abandonment.
 
 For this reason, for restaurants and websites alike, the surest path to success is to focus on both frontend and backend development. Cohesive vision and comprehensive execution will do more to win over lifelong customers than a narrower focus on one aspect of the user experience at the expense of other parts.
 
