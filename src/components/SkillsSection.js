@@ -51,9 +51,6 @@ function SkillPanel({ skill: skillObject }) {
         <CSSTransitionGroup
           transitionName="skill-description"
           transitionAppear={true}
-          transitionAppearTimeout={1000}
-          transitionEnterTimeout={1000}
-          transitionLeaveTimeout={1000}
         >
           <SkillDescription
             key={skill}

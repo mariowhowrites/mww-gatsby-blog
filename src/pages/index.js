@@ -7,27 +7,25 @@ import HeroSection from "../components/HeroSection"
 import SkillsSection from "../components/SkillsSection"
 import RecentWriting from "../components/RecentWriting"
 import ContactMe from "../components/ContactMe"
+import SampleComponent from "../components/SampleComponent"
 
-class HomePage extends React.Component {
-  render() {
-    const { data } = this.props
-    const siteTitle = data.site.siteMetadata.title
-    const posts = data.allMarkdownRemark.edges
-    const skills = data.allSkillsJson.edges
+function HomePage({ data }) {
+  const siteTitle = data.site.siteMetadata.title
+  const posts = data.allMarkdownRemark.edges
+  const skills = data.allSkillsJson.edges
 
-    return (
-      <Layout location={this.props.location} title={siteTitle}>
-        <SEO
-          title="MarioWhoWrites"
-          keywords={[`developer`, `gatsby`, `javascript`, `react`]}
-        />
-        <HeroSection />
-        <SkillsSection skills={skills} />
-        <RecentWriting post={posts[0]} />
-        <ContactMe />
-      </Layout>
-    )
-  }
+  return (
+    <Layout title={siteTitle}>
+      <SEO
+        title="MarioWhoWrites"
+        keywords={[`developer`, `gatsby`, `javascript`, `react`]}
+      />
+      <HeroSection />
+      <SkillsSection skills={skills} />
+      <RecentWriting post={posts[0]} />
+      <ContactMe />
+    </Layout>
+  )
 }
 
 export default HomePage
