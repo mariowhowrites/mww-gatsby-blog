@@ -5,7 +5,7 @@ description: In which we learn generators by using React, Redux and Redux Saga t
 category: Technical
 tags: react, redux, redux-saga, frontend
 image: https://images.unsplash.com/photo-1558220168-42cbb39df876?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80
-date: "2019-07-22"
+date: "2019-07-23"
 ---
 
 In the process of interviewing for front-end jobs, I've taken to building shorter-term projects that I can complete in the space of a weekend, both to practice writing accessible HTML/CSS and to discover new features of JavaScript. One of the more interesting projects I took on recently involved building a game of Snake in React — and not only because it was the first "video game" I've built.
