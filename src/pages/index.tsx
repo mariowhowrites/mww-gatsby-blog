@@ -1,20 +1,59 @@
-import React from "react"
+import React, { FC } from "react"
 import { graphql } from "gatsby"
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import HeroSection from "../components/HeroSection"
-import SkillsSection from "../components/SkillsSection"
-import RecentWriting from "../components/RecentWriting"
-import ContactMe from "../components/ContactMe"
+import { Layout } from "../components/layout"
+import { SEO } from "../components/seo"
+import { HeroSection } from "../components/hero-section"
+import { SkillsSection } from "../components/skills-section"
+import { RecentWriting } from "../components/recent-writing"
+import { ContactMe } from "../components/contact-me"
 
-function HomePage({ data }) {
-  const siteTitle = data.site.siteMetadata.title
+interface HomePageProps {
+  data: {
+    allMarkdownRemark: {
+      edges: ContentNode[]
+    }
+    allSkillsJson: {
+      edges: SkillNode[]
+    }
+  }
+}
+
+export interface Content {
+  timeToRead: number
+  excerpt: string
+  fields: {
+    slug: string
+  }
+  frontmatter: {
+    date: string
+    title: string
+    category: string
+    description: string
+    image: string
+  }
+}
+
+export interface ContentNode {
+  node: Content
+}
+
+export interface Skill {
+  skill: string
+  description: string
+  color: string
+}
+
+export interface SkillNode {
+  node: Skill
+}
+
+const HomePage: FC<HomePageProps> = function({ data }) {
   const posts = data.allMarkdownRemark.edges
   const skills = data.allSkillsJson.edges
 
   return (
-    <Layout title={siteTitle}>
+    <Layout>
       <SEO
         title="MarioWhoWrites"
         keywords={[`developer`, `gatsby`, `javascript`, `react`]}
@@ -31,11 +70,6 @@ export default HomePage
 
 export const pageQuery = graphql`
   query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
     allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
       filter: { frontmatter: { category: { eq: "Technical" } } }

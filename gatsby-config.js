@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `MarioWhoWrites`,
     author: `Mario Vega`,
-    description: `Words for humans about words for computers and other subjects`,
+    description: `Mario Vega is a fullstack TypeScript (Node/React) developer who writes about technology and culture.`,
     siteUrl: `https://mariowhowrites.com`,
     social: {
       twitter: `mariowhowrites`,
@@ -12,6 +12,13 @@ module.exports = {
     },
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-typescript`,
+      options: {
+        isTSX: true,
+        allExtensions: true
+      }
+    },
     `gatsby-plugin-postcss`,
     {
       resolve: `gatsby-source-filesystem`,

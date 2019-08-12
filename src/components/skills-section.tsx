@@ -1,7 +1,12 @@
-import React, { useState } from "react"
+import React, { useState, FC } from "react"
 import { CSSTransitionGroup } from "react-transition-group"
+import { SkillNode } from "../pages"
 
-export default function SkillsSection({ skills }) {
+interface SkillsSectionProps {
+  skills: SkillNode[]
+}
+
+export const SkillsSection: FC<SkillsSectionProps> = function({ skills }) {
   return (
     <section
       className={`flex flex-col bg-light-black justify-center min-h-70vh antialiased`}
@@ -15,7 +20,7 @@ export default function SkillsSection({ skills }) {
         className={`text-4xl md:text-6xl md:pr-64 md:ml-25vw ml-7 mb-8 md:pt-8 font-heading font-bold relative flex flex-col text-white font-body`}
       >
         <ul className="list-none">
-          {skills.map(skill => (
+          {skills.map((skill: SkillNode) => (
             <SkillPanel skill={skill} key={skill.node.skill} />
           ))}
         </ul>
@@ -24,8 +29,12 @@ export default function SkillsSection({ skills }) {
   )
 }
 
-function SkillPanel({ skill: skillObject }) {
-  const { skill, description, color } = skillObject.node
+interface SkillPanelProps {
+  skill: SkillNode
+}
+
+const SkillPanel: FC<SkillPanelProps> = function({ skill: skillNode }) {
+  const { skill, description, color } = skillNode.node
 
   let [isOpen, setIsOpen] = useState(false)
 

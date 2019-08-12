@@ -1,6 +1,6 @@
-import React from "react"
+import React, { FC } from "react"
 
-export default function HeroSection() {
+export const HeroSection: FC = function() {
   return (
     <div
       className={`flex flex-col-reverse mt-16`}

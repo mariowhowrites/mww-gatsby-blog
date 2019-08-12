@@ -1,7 +1,7 @@
-import React from "react"
+import React, { FC } from "react"
 import { Link } from "gatsby"
 
-export default function ContactMe() {
+export const ContactMe: FC = function() {
   return (
     <section
       className={`flex flex-col bg-beige justify-center pl-7 md:pl-25vw md:min-h-60vh min-h-50vh`}

@@ -5,13 +5,13 @@
  * See: https://www.gatsbyjs.org/docs/static-query/
  */
 
-import React from "react"
+import React, { FC, CSSProperties } from "react"
 import { StaticQuery, graphql } from "gatsby"
 import Image from "gatsby-image"
 
-function Bio({ location = undefined }) {
-  const wrapperStyles = {
-    display: `flex`,
+export const Bio: FC = function() {
+  const wrapperStyles: CSSProperties = {
+    display: "flex",
   }
 
   return (
@@ -24,7 +24,6 @@ function Bio({ location = undefined }) {
             <Image
               fixed={data.avatar.childImageSharp.fixed}
               alt={author}
-              
               imgStyle={{
                 borderRadius: `50%`,
               }}
@@ -79,5 +78,3 @@ const bioQuery = graphql`
     }
   }
 `
-
-export default Bio

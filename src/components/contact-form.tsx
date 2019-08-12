@@ -1,7 +1,7 @@
-import React, { useState } from "react"
+import React, { useState, FC } from "react"
 import axios from "axios"
 
-export default function ContactForm() {
+export const ContactForm: FC = function() {
   let [inquiry, setInquiry] = useState("")
   let [name, setName] = useState("")
   let [email, setEmail] = useState("")

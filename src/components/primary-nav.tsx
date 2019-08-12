@@ -1,7 +1,7 @@
-import React, { useState } from "react"
+import React, { useState, FC } from "react"
 import { Link, StaticQuery, graphql } from "gatsby"
 
-function PrimaryNav() {
+const PrimaryNav: FC = function() {
   let [showMobileNav, setShowMobileNav] = useState(false)
 
   return (
@@ -11,14 +11,12 @@ function PrimaryNav() {
         const { title } = data.site.siteMetadata
 
         return (
-          <div className={`absolute mt-2 md:mt-8 w-full font-body font-bold`}>
-            <div
-              className={`flex justify-between px-7 md:px-24 mx-auto items-baseline relative`}
-            >
+          <div className="absolute mt-2 md:mt-8 w-full font-body font-bold">
+            <div className="flex justify-between px-7 md:px-24 mx-auto items-baseline relative">
               <Link to="/">
-                <h3 className={`text-xl md:text-3xl font-heading`}>{title}</h3>
+                <h3 className="text-xl md:text-3xl font-heading">{title}</h3>
               </Link>
-              <aside className={`hidden md:block text-3xl opacity-50`}>
+              <aside className="hidden md:block text-3xl opacity-50">
                 <Link to="/blog" className="mr-12">
                   Blog
                 </Link>
@@ -26,7 +24,7 @@ function PrimaryNav() {
               </aside>
               <aside
                 onClick={() => setShowMobileNav(!showMobileNav)}
-                className={`md:hidden text-3xl cursor-pointer select-none`}
+                className="md:hidden text-3xl cursor-pointer select-none"
               >
                 &#9776;
               </aside>
@@ -39,8 +37,12 @@ function PrimaryNav() {
   )
 }
 
-function MobileNav({ show }) {
-  return !show ? null : (
+interface MobileNavProps {
+  show: boolean
+}
+
+const MobileNav: FC<MobileNavProps> = function({ show }) {
+  return show ? (
     <div className="bg-light-black absolute right-2rem top-2.75rem px-4 z-10 text-white antialiased">
       <ul>
         <Link to="/blog">
@@ -51,7 +53,7 @@ function MobileNav({ show }) {
         </Link>
       </ul>
     </div>
-  )
+  ) : null
 }
 
 export default PrimaryNav
