@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: `MarioWhoWrites`,
@@ -16,8 +20,8 @@ module.exports = {
       resolve: `gatsby-plugin-typescript`,
       options: {
         isTSX: true,
-        allExtensions: true
-      }
+        allExtensions: true,
+      },
     },
     `gatsby-plugin-postcss`,
     {
@@ -94,5 +98,12 @@ module.exports = {
     },
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+      },
+    },
   ],
 }
