@@ -20,7 +20,7 @@ export const _CourseIndex: FC<CourseIndexProps> = function({
 }: CourseIndexProps) {
   const course = courseNode.node
 
-  if (currentChapter.content === "") {
+  if (currentChapter.title === "null chapter") {
     if (chapterSelect) {
       chapterSelect(course.units[0].chapters[0])
     }

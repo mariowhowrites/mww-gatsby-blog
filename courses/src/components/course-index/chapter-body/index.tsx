@@ -1,47 +1,96 @@
-import React, { FC, useCallback, useState } from "react"
+import React, { FC, useEffect, useState } from "react"
+import { connect } from "react-redux"
 
 import { Chapter } from "../../../types"
 import { StoreState } from "../../../store/reducers"
-import { connect } from "react-redux"
+import { chapterNav, NavAction } from "../../../store/actions/nav"
+import { ChapterVideo } from "./chapter-video"
 
 interface ChapterBodyProps {
   chapter: Chapter
+  newChapter: boolean
+  chapterNav: () => NavAction
 }
 
 const _ChapterBody: FC<ChapterBodyProps> = function({
   chapter,
+  newChapter,
+  chapterNav,
 }: ChapterBodyProps) {
-  console.log("in chapter body...")
-  console.log(chapter)
+  const content = chapter.chapterContent.content
 
-  const content = chapter.chapterContent.content[0].content[0].value
+  const [progress, setProgress] = useState(3)
+
+  console.log(newChapter)
+
+  useEffect(
+    function() {
+      if (newChapter) {
+        setProgress(3)
+        chapterNav()
+      }
+    },
+    [newChapter]
+  )
+
+  const handleVideoProgress = function(event: any) {
+    const { currentTime, duration } = event.target
+
+    const currentProgress = (currentTime / duration) * 100
+
+    if (currentProgress >= 0) {
+      setProgress(Math.max(progress, currentProgress))
+    }
+  }
 
   return (
     <article style={{ flex: "0 0 65%", paddingTop: "8%" }}>
-      {chapter.video && <ChapterVideo chapter={chapter} />}
-      <section
+      <div
         style={{
           display: "flex",
-          justifyContent: "center",
           flexDirection: "column",
           alignItems: "center",
-          marginTop: "2.4rem",
         }}
       >
-        <h2
+        {chapter.video && (
+          <ChapterVideo
+            handleVideoProgress={handleVideoProgress}
+            progress={progress}
+            chapter={chapter}
+          />
+        )}
+        <section
           style={{
-            alignSelf: "flex-start",
-            marginLeft: "10%",
-            marginBottom: "2.4rem",
-            textTransform: "uppercase",
-            fontSize: "1.5rem",
-            fontWeight: "bold",
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
+            alignItems: "center",
+            marginTop: "2.4rem",
+            width: "80%",
           }}
         >
-          {chapter.title}
-        </h2>
-        <p style={{ width: "80%" }}>{content}</p>
-      </section>
+          <h2
+            style={{
+              alignSelf: "flex-start",
+              marginBottom: "2.4rem",
+              textTransform: "uppercase",
+              fontSize: "1.5rem",
+              fontWeight: "bold",
+            }}
+          >
+            {chapter.title}
+          </h2>
+          <div style={{ width: "100%" }}>
+            {content.map(function(paragraph, index) {
+              return (
+                <p style={{ marginBottom: "1.5rem" }} key={index}>
+                  {paragraph.content[0].value}
+                </p>
+              )
+            })}
+          </div>
+        </section>
+      </div>
     </article>
   )
 }
@@ -49,38 +98,11 @@ const _ChapterBody: FC<ChapterBodyProps> = function({
 const mapStateToProps = function(state: StoreState) {
   return {
     chapter: state.nav.currentChapter,
+    newChapter: state.nav.newChapter,
   }
 }
 
-export const ChapterBody = connect(mapStateToProps)(_ChapterBody)
-
-interface ChapterVideoProps {
-  chapter: Chapter
-}
-
-const ChapterVideo: FC<ChapterVideoProps> = function({ chapter }) {
-  const [containerWidth, setContainerWidth] = useState(640)
-
-  let width = containerWidth * 0.8
-  let height = width * 0.5625
-
-  const widthRef = useCallback(function(node: any) {
-    if (node !== null) {
-      setContainerWidth(node.offsetWidth)
-    }
-  }, [])
-
-  return (
-    <section
-      ref={widthRef}
-      style={{ display: "flex", justifyContent: "center" }}
-    >
-      <video
-        src={`https:${chapter.video.file.url}`}
-        width={width}
-        height={height}
-        controls
-      />
-    </section>
-  )
-}
+export const ChapterBody = connect(
+  mapStateToProps,
+  { chapterNav }
+)(_ChapterBody)

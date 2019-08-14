@@ -4,6 +4,7 @@ import { Chapter } from "../../types"
 
 export interface NavState {
   currentChapter: Chapter
+  newChapter: boolean
 }
 
 const nullChapter = {
@@ -29,6 +30,7 @@ const nullChapter = {
 export function navReducer(
   initialState: NavState = {
     currentChapter: nullChapter,
+    newChapter: false,
   },
   action: NavAction
 ): NavState {
@@ -36,6 +38,12 @@ export function navReducer(
     case ActionTypes.chapterSelect:
       return {
         currentChapter: action.payload,
+        newChapter: true,
+      }
+    case ActionTypes.chapterNav:
+      return {
+        currentChapter: initialState.currentChapter,
+        newChapter: false,
       }
     default:
       return initialState
