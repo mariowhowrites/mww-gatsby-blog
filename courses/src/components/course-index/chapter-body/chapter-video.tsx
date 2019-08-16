@@ -13,19 +13,13 @@ export const ChapterVideo: FC<ChapterVideoProps> = function({
   progress,
   handleVideoProgress,
 }) {
-  console.log("progress in video component....")
-  console.log(progress)
-
   const [containerWidth, setContainerWidth] = useState(640)
-
-  let width = containerWidth
-  let height = width * 0.5625
-
   const widthRef = useCallback(function(node: any) {
     if (node !== null) {
       setContainerWidth(node.offsetWidth)
     }
   }, [])
+  let height = containerWidth * 0.5625
 
   return (
     <section

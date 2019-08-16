@@ -1,5 +1,7 @@
 import React, { FC, useEffect, useState } from "react"
 import { connect } from "react-redux"
+import { BLOCKS, MARKS } from "@contentful/rich-text-types"
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
 import { Chapter } from "../../../types"
 import { StoreState } from "../../../store/reducers"
@@ -17,12 +19,7 @@ const _ChapterBody: FC<ChapterBodyProps> = function({
   newChapter,
   chapterNav,
 }: ChapterBodyProps) {
-  const content = chapter.chapterContent.content
-
   const [progress, setProgress] = useState(3)
-
-  console.log(newChapter)
-
   useEffect(
     function() {
       if (newChapter) {
@@ -35,13 +32,14 @@ const _ChapterBody: FC<ChapterBodyProps> = function({
 
   const handleVideoProgress = function(event: any) {
     const { currentTime, duration } = event.target
-
     const currentProgress = (currentTime / duration) * 100
 
     if (currentProgress >= 0) {
       setProgress(Math.max(progress, currentProgress))
     }
   }
+
+  const content = chapter.chapterContent.content
 
   return (
     <article style={{ flex: "0 0 65%", paddingTop: "8%" }}>

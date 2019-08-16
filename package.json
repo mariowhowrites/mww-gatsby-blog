@@ -8,6 +8,8 @@
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
   "dependencies": {
+    "@contentful/rich-text-react-renderer": "^13.4.0",
+    "@contentful/rich-text-types": "^13.4.0",
     "@types/node": "^12.7.1",
     "@types/react": "^16.9.1",
     "@types/react-dom": "^16.8.5",
