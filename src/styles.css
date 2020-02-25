@@ -60,6 +60,10 @@
   @apply my-4 break-words;
 }
 
+#post-content blockquote {
+  @apply ml-8 opacity-75;
+}
+
 .gatsby-highlight {
   @apply my-8;
 }
