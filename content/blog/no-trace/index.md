@@ -3,6 +3,7 @@ title: No Trace
 published: true
 description: Can software development be zazen?
 tags: zen, software development, zazen, productivity
+image: https://images.unsplash.com/photo-1576938929279-f2e87359791d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80
 category: Personal
 date: "2020-02-25"
 ---
